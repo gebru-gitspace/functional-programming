@@ -9,7 +9,7 @@ This repository contains two main parts:
 
 ---
 
-## Functional Programming concepts
+## 1. Functional Programming concepts
 
 - **Pure Functions:** Functions with no side-effects and predictable outputs.
 - **Lambda & Closures:** Anonymous functions and closures capturing the environment.
