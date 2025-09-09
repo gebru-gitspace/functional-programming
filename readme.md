@@ -15,8 +15,30 @@ A compact Rust project demonstrating **functional programming paradigms** with i
 - **Pattern Matching & Enums:** Algebraic data types and `match`-based evaluation.
 - **Builder Pattern:** Immutable builder pattern for struct construction.
 - **Option Handling:** Safe handling of potentially missing data.
+- **Text Analyzer (`file_parser.rs`):** Functional CLI program for word frequency analysis with optional filters.
 
 ---
 
 ## Project Structure
 
+```text
+functional-programming/
+│
+├── Cargo.toml                # Rust project manifest
+├── src/
+│   ├── main.rs               # Optional main script (could be empty or demo entry)
+│   └── bin/
+│       ├── concepts.rs       # Demonstrates functional programming concepts
+│       └── file_parser.rs    # CLI text analyzer using functional programming
+└── README.md                 # Project documentation
+
+
+### Run the Functional Programming Examples
+
+```bash
+cargo run --bin concepts
+```
+Run the analzer
+```
+cargo run --bin file_parser -- <filename> [--min-length N] [--starts-with C]
+```
