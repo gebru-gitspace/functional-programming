@@ -53,7 +53,7 @@ impl Config {
         //     i += 1;
         // }
 
-         // Parse optional flags
+         // Parse cli flags
         let mut iter = args.iter().skip(2);
         while let Some(flag) = iter.next() {
             match flag.as_str() {
