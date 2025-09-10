@@ -100,10 +100,10 @@ fn display_stats(freqs: &HashMap<String, usize>) {
     } else {
         println!("No words found after filtering.");
     }
-      println!("\n--- Word Frequencies ---");
-    for (word, count) in freqs {
-        println!("{}: {}", word, count);
-    }
+    //   println!("\n--- Word Frequencies ---");
+    // for (word, count) in freqs {
+    //     println!("{}: {}", word, count);
+    // }
 }
 
 fn main() {
