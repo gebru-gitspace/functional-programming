@@ -1,11 +1,12 @@
-use std::collections::HashMap;
-use std::env;
-use std::fs;
 
 /// Simple Text Analyzer
 /// Reads a file, counts word frequencies, and supports optional filters:
 /// --min-length N  : Only count words of length >= N
 /// --starts-with C : Only count words starting with C
+use std::collections::HashMap;
+use std::env;
+use std::fs;
+
 
 fn main() {
     // Collect CLI args
