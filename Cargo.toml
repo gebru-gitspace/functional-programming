@@ -3,6 +3,6 @@ name = "file-parser"
 version = "0.1.0"
 edition = "2024"
 
-default-run = "main"
+default-run = "file_parser"
 
 [dependencies]
