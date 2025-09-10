@@ -66,6 +66,14 @@ fn read_file(path: &str) -> Result<String, String> {
     fs::read_to_string(path).map_err(|err| format!("Error reading file {}: {}", path, err))
 }
 
+/// Clean a word: keep only alphanumeric characters, lowercase it
+fn clean_word(word: &str) -> String {
+    word.chars()
+        .filter(|c| c.is_alphanumeric())
+        .flat_map(|c| c.to_lowercase()) // handles Unicode case folding
+        .collect()
+}
+
 /// Analyze text and count word frequencies functionally
 fn analyze_text(text: &str, config: &Config) -> HashMap<String, usize> {
     // Filtering closure
