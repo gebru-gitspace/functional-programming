@@ -48,7 +48,7 @@ functional-programming/
 ├── src/
 │   ├── main.rs               # Optional main script (could be empty or demo entry)
 │   └── bin/
-│       ├── concepts.rs       # Demonstrates functional programming concepts
+│       ├── fp_concepts.rs       # Demonstrates functional programming concepts
 │       └── file_parser.rs    # CLI text analyzer using functional programming
 └── README.md                 # Project documentation
 
