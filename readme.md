@@ -4,7 +4,7 @@ A compact Rust project demonstrating **functional programming paradigms** with i
 
 This repository contains two main parts:
 
-1. **Functional Programming Concepts** (`concepts.rs`)  
+1. **Functional Programming Concepts** (`fp_concepts.rs`)  
 2. **Text Analyzer** (`file_parser.rs`)
 
 ---
@@ -56,9 +56,12 @@ functional-programming/
 ### Run the Functional Programming Examples
 
 ```bash
-cargo run --bin concepts
+cargo run --bin fp_concepts
 ```
-Run the analzer
+Run the analzer (default-run)
+```
+cargo run -- <filename> [--min-length N] [--starts-with C]
+```
 ```
 cargo run --bin file_parser -- <filename> [--min-length N] [--starts-with C]
 ```
