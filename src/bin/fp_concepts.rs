@@ -30,11 +30,15 @@ pub fn closure_example(factor: i32) -> impl Fn(i32) -> i32 {
     move |x| x * factor
 }
 
-/// # Map Example
-/// Applies a transformation (doubling) to each element in a slice.
-pub fn map_example(nums: &[i32]) -> Vec<i32> {
-    nums.iter().map(|x| x * 2).collect()
+/// # Map Generic
+/// Applies a transformation to each element in a slice.
+pub fn map_generic<T, U, F>(nums: &[T], f: F) -> Vec<U>
+where
+    F: Fn(&T) -> U,
+{
+    nums.iter().map(|x| f(x)).collect()
 }
+
 
 /// # Filter + Sum
 /// Filters positive numbers from a slice and returns their sum.
@@ -132,8 +136,10 @@ fn main() {
 
     let double = closure_example(2);
     println!("closure double 7 = {}", double(7));
+    
+    let squared = map_generic(&[1, 2, 3], |x| x * x);
+    println!("[1,2,3] squared-> {:?}", squared);
 
-    println!("map_example([1, 2, 3]) = {:?}", map_example(&[1, 2, 3]));
     println!("sum_positive([-2, 3, 5]) = {}", sum_positive(&[-2, 3, 5]));
     println!("squares_of_positive([-1, 2, 3]) = {:?}", squares_of_positive(&[-1, 2, 3]));
 
