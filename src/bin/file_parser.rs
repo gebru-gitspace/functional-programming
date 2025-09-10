@@ -33,24 +33,42 @@ impl Config {
         let mut min_length: Option<usize> = None;
         let mut starts_with: Option<char> = None;
 
-        let mut i = 2;
-        while i < args.len() {
-            match args[i].as_str() {
+        // let mut i = 2;
+        // while i < args.len() {
+        //     match args[i].as_str() {
+        //         "--min-length" => {
+        //             if i + 1 < args.len() {
+        //                 min_length = args[i + 1].parse().ok();
+        //                 i += 1;
+        //             }
+        //         }
+        //         "--starts-with" => {
+        //             if i + 1 < args.len() {
+        //                 starts_with = args[i + 1].chars().next();
+        //                 i += 1;
+        //             }
+        //         }
+        //         _ => {}
+        //     }
+        //     i += 1;
+        // }
+
+         // Parse optional flags
+        let mut iter = args.iter().skip(2);
+        while let Some(flag) = iter.next() {
+            match flag.as_str() {
                 "--min-length" => {
-                    if i + 1 < args.len() {
-                        min_length = args[i + 1].parse().ok();
-                        i += 1;
+                    if let Some(n) = iter.next() {
+                        min_length = n.parse::<usize>().ok();
                     }
                 }
                 "--starts-with" => {
-                    if i + 1 < args.len() {
-                        starts_with = args[i + 1].chars().next();
-                        i += 1;
+                    if let Some(c) = iter.next() {
+                        starts_with = c.chars().next();
                     }
                 }
                 _ => {}
             }
-            i += 1;
         }
 
         Ok(Self {
