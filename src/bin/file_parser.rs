@@ -3,6 +3,7 @@
 //! Reads a text file, counts word frequencies, and displays statistics.
 //! Demonstrates functional programming in Rust using iterators, closures, and combinators.
 //! Supports dynamic filtering: minimum word length and words starting with a specific character.
+
 /// September 2025
 
 use std::collections::HashMap;
@@ -98,6 +99,10 @@ fn display_stats(freqs: &HashMap<String, usize>) {
         println!("Most common word: '{}' ({} occurrences)", word, count);
     } else {
         println!("No words found after filtering.");
+    }
+      println!("\n--- Word Frequencies ---");
+    for (word, count) in freqs {
+        println!("{}: {}", word, count);
     }
 }
 
