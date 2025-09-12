@@ -102,9 +102,9 @@ fn analyze_text(text: &str, config: &Config) -> HashMap<String, usize> {
     };
 
     text.split_whitespace()
-        // .map(clean_word)
-        .map(|w| w.trim_matches(|c: char| !c.is_alphanumeric()))
-        .map(|w| w.to_lowercase())
+        .map(clean_word)
+        // .map(|w| w.trim_matches(|c: char| !c.is_alphanumeric()))
+        // .map(|w| w.to_lowercase())
         .filter(|w| !w.is_empty())
         .filter(|w| filter(w))
         .fold(HashMap::new(), |mut acc, word| {
