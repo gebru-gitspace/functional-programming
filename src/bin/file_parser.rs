@@ -58,14 +58,23 @@ impl Config {
         while let Some(flag) = iter.next() {
             match flag.as_str() {
                 "--min-length" => {
-                    if let Some(n) = iter.next() {
-                        min_length = n.parse::<usize>().ok();
-                    }
+                    min_length = Some(
+                        iter
+                            .next()
+                            .ok_or("--min-length requires a number")?
+                            .parse::<usize>()
+                            .map_err(|_| "Invalid number for --min-length")?,
+                    );
                 }
                 "--starts-with" => {
-                    if let Some(c) = iter.next() {
-                        starts_with = c.chars().next();
-                    }
+                    starts_with = Some(
+                        iter
+                            .next()
+                            .ok_or("--starts-with requires a character")?
+                            .chars()
+                            .next()
+                            .ok_or("Invalid character for --starts-with")?,
+                    );
                 }
                 _ => {}
             }
@@ -105,6 +114,7 @@ fn analyze_text(text: &str, config: &Config) -> HashMap<String, usize> {
         .map(clean_word)
         // .map(|w| w.trim_matches(|c: char| !c.is_alphanumeric()))
         // .map(|w| w.to_lowercase())
+        .map(|w| w.trim().to_string())   
         .filter(|w| !w.is_empty())
         .filter(|w| filter(w))
         .fold(HashMap::new(), |mut acc, word| {
