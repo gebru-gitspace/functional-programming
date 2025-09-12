@@ -85,11 +85,13 @@ where
 }
 
 /// # Enum + Pattern Matching Example
-/// Represents a simple arithmetic expression.
+/// Represents a some arithmetic expressions.
 #[derive(Debug)]
 pub enum Expr {
     Const(i32),
     Add(Box<Expr>, Box<Expr>),
+    Mul(Box<Expr>, Box<Expr>),
+    Sub(Box<Expr>, Box<Expr>),
 }
 
 /// Evaluates an arithmetic expression recursively.
@@ -97,6 +99,8 @@ pub fn eval(expr: &Expr) -> i32 {
     match expr {
         Expr::Const(n) => *n,
         Expr::Add(a, b) => eval(a) + eval(b),
+        Expr::Mul(a, b) => eval(a) * eval(b),
+        Expr::Sub(a, b) => eval(a) - eval(b),
     }
 }
 
@@ -156,6 +160,14 @@ fn main() {
     // Enum + Pattern Matching
     let expr = Expr::Add(Box::new(Expr::Const(2)), Box::new(Expr::Const(4)));
     println!("eval(Add(Const 2, Const 4)) = {}", eval(&expr));
+
+    // Expression: (2 + 3) * (5 - 1)
+    let expr2 = Expr::Mul(
+        Box::new(Expr::Add(Box::new(Expr::Const(2)), Box::new(Expr::Const(3)))),
+        Box::new(Expr::Sub(Box::new(Expr::Const(5)), Box::new(Expr::Const(1)))),
+    );
+
+    println!("Expression: {:?} = {}", expr2, eval(&expr2));
 
     // Option Handling
     match get_human("Alice") {
